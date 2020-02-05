@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Check In</title>
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/jquery-ui.min.css">
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container">
+			<span class="navbar-brand">PA Guest House</span>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="/dashboard">Dashboard</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/userslist">Users</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Reports</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/editprofile">Profile</a>
+					</li>
+				</ul>
+				
+				<a href="/logout" class="btn btn-primary">Logout (<%= user.nickname %>)</a>
+			</div>
+		</div>
+	</nav>
+	<div class="form">
+		<form id="check-in-form" action="#" method="post">
+			<h1>Check In</h1>
+			<input id="room-number" type="hidden" name="roomnumber" value="<%= roomNumber %>">
+			<input id="name" type="text" name="name" placeholder="Name">
+			<input id="national-id" type="text" name="nationalid" placeholder="National ID">
+			<input id="phone-number" type="number" name="phonenumber" placeholder="Phone Number">
+			<input id="persons" type="number" name="persons" placeholder="Total People">
+			<input id="datepicker" type="text" name="date" placeholder="Total Days">
+			<input id="hours" type="number" name="hours" placeholder="Total Hours">
+			<div class="input-group">
+				<input id="price" class="last-input form-control" type="number" name="price" placeholder="Price">
+				<div class="input-group-append">
+					<span class="input-group-text">$</span>
+				</div>
+			</div>
+			<select id="pay" name="pay" class="custom-select form-control">
+				<option value="no">No</option>
+				<option value="yes">Yes</option>
+			</select>
+			<p class="text-danger form-error-message"></p>
+			<button type="submit" class="bg-primary">Check In</button>
+			<a href="/dashboard" class="bg-danger btn">Cancal</a>
+		</form>
+	</div>
+
+
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/jquery-ui.min.js"></script>
+	<script src="/js/script.js"></script>
+</body>
+</html>

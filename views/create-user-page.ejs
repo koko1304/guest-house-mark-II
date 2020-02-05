@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Create User Page</title>
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="light-grey">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container">
+			<span class="navbar-brand">PA Guest House</span>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="/userslist">Users</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Reports</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/editprofile">Profile</a>
+					</li>
+				</ul>
+				
+				<a href="/logout" class="btn btn-primary">Logout (<%= user.nickname %>)</a>
+			</div>
+		</div>
+	</nav>
+	<div class="form">
+		<form id="app-form" action="/createuser" method="post">
+			<h1>Create User</h1>
+			<input value="<%= nickname %>" id="nickname-field" type="text" name="nickname" placeholder="Nickname">
+			<input value="<%= username %>" id="username-field" type="text" name="username" placeholder="Username">
+			<input id="password-field" type="password" name="password" placeholder="Password">
+			<input id="confirm-field" class="last-input" type="password" placeholder="Confirm Password">
+			<% if (rolecheck) { %>
+			<select id="role-field" name="role" class="custom-select">
+				<option value="admin">Admin</option>
+				<option value="stuff">Stuff</option>
+			</select>
+			<% } else { %>
+			<input id="role-field" type="hidden" name="role" value="stuff">
+			<% } %>
+				<p class="text-danger form-error-message"><%= message %></p>
+			<button type="submit" class="bg-primary">Create User</button>
+			<a href="/userslist" class="btn btn-danger">Cancal</a>
+		</form>
+	</div>
+
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/script.js"></script>
+</body>
+</html>

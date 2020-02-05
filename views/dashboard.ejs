@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Dashboard</title>
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container">
+			<span class="navbar-brand">PA Guest House</span>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="/userslist">Users</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Reports</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/editprofile">Profile</a>
+					</li>
+				</ul>
+				
+				<a href="/logout" class="btn btn-primary">Logout (<%= user.nickname %>)</a>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<h1>Rooms List</h1>
+		<table class="table table-sm table-bordered table-room">
+			<thead class="thead-dark">
+				<tr>
+					<th>Room</th>
+					<th>Name</th>
+					<th>National ID</th>
+					<th>Phone</th>
+					<th>Person</th>
+					<th>Check-in</th>
+					<th>Expire</th>
+					<th>Price</th>
+					<th>Pay</th>
+					<th>Check In By</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% var floorNumber = 0, roomNumber %>
+				<% roomslist.forEach(room => { %>
+					<% if (typeof room === "number") { %>
+						<% floorNumber += 100 %>
+						<% for (var i = 1; i <= room; i++) { %>
+							<% roomNumber = floorNumber + i %>
+							<% if (roomNumber === busyrooms[0].room ) { %>
+								<!-- <tr class="table-danger">
+									<td>101</td>
+									<td>Pu Leng</td>
+									<td>020874758</td>
+									<td>069 480 189</td>
+									<td>3</td>
+									<td>01/07/2019 <br><time>9:00PM</time></td>
+									<td>02/07/2019 <br><time>12:00AM</time></td>
+									<td>3$</td>
+									<td><input type="checkbox"></td>
+									<td>San Visal</td>
+									<td><button class="btn btn-primary btn-sm">Edit</button><button class="btn btn-danger btn-sm ml-2">Check Out</button></td>
+								</tr> -->
+							<% } else { %>
+								<tr class="table-primary">
+									<td><%= roomNumber %></td>
+									<td colspan="9" class="text-center">Available</td>
+									<td><a href="/checkin?room=<%= roomNumber %>" class="btn btn-primary btn-sm btn-block">Check In</a></td>
+								</tr>
+							<% } %>
+						<% } %>
+					<% } else { %>
+						<tr class="table-secondary">
+							<td class="table-heading" colspan="11"><%= room %></td>
+						</tr>
+					<% } %>
+				<% }) %>
+			</tbody>
+		</table>
+	</div>
+
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/script.js"></script>
+</body>
+</html>

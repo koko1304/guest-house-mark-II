@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Edit Profile Page</title>
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="light-grey">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container">
+			<span class="navbar-brand">PA Guest House</span>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="/userslist">Users</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Reports</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/editprofile">Profile</a>
+					</li>
+				</ul>
+				
+				<a href="/logout" class="btn btn-primary">Logout (<%= user.nickname %>)</a>
+			</div>
+		</div>
+	</nav>
+	<div class="form">
+		<form id="app-form" action="<%= action %>" method="post">
+			<h1><%= header %></h1>
+			<% if (cancel !== "/dashboard") { %>
+			<input type="hidden" name="oldusername" value="<%= user.username %>">
+			<% } %>
+			<div class="form-group">
+				<label for="nickname-field">Nickname</label>
+				<input id="nickname-field" value="<%= user.nickname %>" type="text" name="nickname" placeholder="Nickname">
+			</div>
+			<div class="form-group">
+				<label for="nickname-field">Username</label>
+				<input id="username-field" class="last-input" value="<%= user.username %>" type="text" name="username" placeholder="Username">
+			</div>
+			<% if (message) { %>
+				<p class="text-danger form-error-message"><%= message %></p>
+			<% } %>
+			<button type="submit" class="bg-primary">Update User</button>
+			<a href="/changepassword/<%= user.username + page %>" class="bg-primary btn">Change Password</a>
+			<a href="<%= cancel %>" class="bg-danger btn">Cancal</a>
+		</form>
+	</div>
+
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/script.js"></script>
+</body>
+</html>

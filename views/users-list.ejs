@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Users List Page</title>
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="light-grey">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container">
+			<span class="navbar-brand">Pa Guest House</span>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="/dashboard">Dashboard</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="createuser">Create User</a>
+					</li>
+				</ul>
+				<button id="delete-selected-user" class="btn btn-primary">Delete Seleted Users</button>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col"><input id="select-all-user-checkbox" type="checkbox"></th>
+					<th scope="col">N<sup>o</sup></th>
+					<th scope="col">Nickname</th>
+					<th scope="col">Username</th>
+					<th scope="col">Role</th>
+					<th scope="col">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% users.forEach((user, i) => { %>
+				<tr>
+					<th scope="row"><input data-username="<%= user.username %>" class="user-checkbox" type="checkbox"></th>
+					<th><%= i++ %></th>
+					<td><%= user.nickname %></td>
+					<td><%= user.username %></td>
+					<td><%= user.role %></td>
+					<td><a href="/edituser/<%= user.username %>" class="btn btn-primary mr-2">Edit</a><button data-username="<%= user.username %>" class="btn btn-danger del-user-btn">Delete</button></td>
+				</tr>
+				<% }) %>
+			</tbody>
+		</table>
+	</div>
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/script.js"></script>
+</body>
+</html>
